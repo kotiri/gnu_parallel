@@ -19,8 +19,7 @@
 
 include_recipe "homebrew"
 
-if Chef::Platform.find_provider_for_node(node, :package) == Chef::Provider::Package::Homebrew
-  package p do
-    action :install
-  end
+package p do
+  action :install
+  only_if { Chef::Platform.find_provider_for_node(node, :package) == Chef::Provider::Package::Homebrew }
 end
